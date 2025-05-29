@@ -1,6 +1,4 @@
-<?php
-include 'koneksi.php';
-?>
+<?php include 'koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -28,6 +26,17 @@ include 'koneksi.php';
             background-color: #fff;
             padding: 2rem;
             margin-top: 3rem;
+        }
+
+        canvas {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        h4.chart-title {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -71,10 +80,12 @@ include 'koneksi.php';
         $layak = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as jml FROM data_uji WHERE hasil='Layak'"))['jml'];
         $tidak = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as jml FROM data_uji WHERE hasil='Tidak Layak'"))['jml'];
         ?>
-        <h4 class="text-center">📈 Distribusi Hasil Klasifikasi</h4>
-        <canvas id="chartDistribusi" height="150"></canvas>
+        <h4 class="chart-title">📈 Distribusi Hasil Klasifikasi</h4>
+        <div class="d-flex justify-content-center">
+            <canvas id="chartDistribusi" height="200"></canvas>
+        </div>
 
-        <hr class="my-4">
+        <hr class="my-5">
 
         <!-- Chart Penghasilan -->
         <?php
@@ -85,15 +96,17 @@ include 'koneksi.php';
             $jumlah[] = $row['jumlah'];
         }
         ?>
-        <h4 class="text-center">📊 Distribusi Berdasarkan Penghasilan</h4>
-        <canvas id="chartPenghasilan" height="150"></canvas>
+        <h4 class="chart-title">📊 Distribusi Berdasarkan Penghasilan</h4>
+        <div class="d-flex justify-content-center">
+            <canvas id="chartPenghasilan" height="200"></canvas>
+        </div>
 
-        <hr class="my-4">
+        <hr class="my-5">
 
         <!-- Navigasi -->
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-            <a href="bayes_form.php" class="btn btn-success">🔄 Input Baru</a>
-            <a href="/semester4/Kecerdasan Buatan/Program ML/index.php" class="btn btn-light text-dark">🏠 Kembali ke Beranda</a>
+            <a href="./index.php" class="btn btn-success">🔄 Input Baru</a>
+            <a href="../index.php" class="btn btn-light text-dark">🏠 Kembali ke Beranda</a>
         </div>
     </div>
 </div>
@@ -103,7 +116,7 @@ include 'koneksi.php';
         $('#tabelHasil').DataTable();
     });
 
-    const ctx = document.getElementById('chartDistribusi');
+    const ctx = document.getElementById('chartDistribusi').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
         data: {
@@ -115,6 +128,7 @@ include 'koneksi.php';
             }]
         },
         options: {
+            responsive: true,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -124,7 +138,7 @@ include 'koneksi.php';
         }
     });
 
-    const ctx2 = document.getElementById('chartPenghasilan');
+    const ctx2 = document.getElementById('chartPenghasilan').getContext('2d');
     new Chart(ctx2, {
         type: 'pie',
         data: {
@@ -136,7 +150,12 @@ include 'koneksi.php';
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
         }
     });
 </script>
