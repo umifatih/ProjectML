@@ -92,7 +92,7 @@ include 'koneksi.php';
                <hr class="my-4">
                 <div class="d-grid gap-2">
                     <a href="data.php" class="btn btn-warning">📋 Lihat & Kelola Data</a>
-                    <a href="/semester4/Kecerdasan Buatan/Program ML/index.php" class="btn btn-light text-dark">🏠 Kembali ke Beranda</a>
+                    <a href="../index.php" class="btn btn-light text-dark">🏠 Kembali ke Beranda</a>
                 </div>
 
             </div>

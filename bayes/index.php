@@ -32,7 +32,7 @@ include 'koneksi.php';
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
             <div class="form-card">
-                <h2 class="text-center mb-3">🔍 Klasifikasi Naive Bayes</h2>
+                <h2 class="text-center mb-3">🤖 Klasifikasi Naive Bayes</h2>
                 <p class="text-center text-muted">Masukkan data uji untuk diklasifikasikan menggunakan metode Naive Bayes</p>
 
                 <form action="simpan_uji.php" method="POST">
@@ -85,8 +85,9 @@ include 'koneksi.php';
 
                 <div class="d-grid gap-2">
                     <a href="hasil.php" class="btn btn-warning">📋 Lihat Data Uji</a>
-                    <a href="/semester4/Kecerdasan Buatan/Program ML/index.php" class="btn btn-light text-dark">🏠 Kembali ke Beranda</a>
+                    <a href="../index.php" class="btn btn-light text-dark">🏠 Kembali ke Beranda</a>
                 </div>
+
             </div>
         </div>
     </div>
